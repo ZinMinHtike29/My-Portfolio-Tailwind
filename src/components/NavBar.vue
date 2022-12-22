@@ -23,7 +23,7 @@
             @click="scrollMe(t.id)"
             :class="
               currentTab == t.id
-                ? 'dark:text-indigo-900 dark:md:text-indigo-900 text-indigo-700'
+                ? ' border-b-2 sm:border-b-0 dark:md:text-indigo-900 text-indigo-700'
                 : ''
             "
           >
