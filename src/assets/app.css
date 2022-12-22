@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,400;1,500;1,600&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* DEMO-SPECIFIC STYLES */
+
+.typewriter {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: 7px solid #4f46e5;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    /* Adjust as needed */
+    animation: typing 3.5s steps(30, end), blink-caret 0.6s step-end infinite;
+}
+
+
+/* The typing effect */
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 65%;
+    }
+}
+
+
+/* The typewriter cursor effect */
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #4f46e5;
+    }
+}
+
+.loader {
+    color: #fff;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-weight: bold;
+    font-size: 78px;
+    opacity: 0.8;
+}
+
+.loader:before {
+    content: "{";
+    display: inline-block;
+    animation: pulse 0.4s alternate infinite ease-in-out;
+}
+
+.loader:after {
+    content: "}";
+    display: inline-block;
+    animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes pulse {
+    to {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+.loader2 {
+    width: 15px;
+    height: 20px;
+    background: #fff;
+    margin-left: 15px;
+    margin-top: 15px;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: bump 0.4s linear infinite alternate;
+}
+
+.loader2::after {
+    content: "";
+    box-sizing: border-box;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    border: 15px solid transparent;
+    border-bottom-color: #fff;
+}
+
+@keyframes bump {
+    0% {
+        transform: translate(-50%, 5px);
+    }
+    100% {
+        transform: translate(-50%, -5px);
+    }
+}
