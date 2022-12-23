@@ -27,42 +27,58 @@
               >
                 <h1>Send Message . .</h1>
               </div>
-              <div class="mb-8">
-                <input
-                  type="text"
-                  class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
-                  placeholder="Enter Your Name"
-                />
-              </div>
-              <div class="mb-8">
-                <input
-                  type="text"
-                  class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
-                  placeholder="Enter Your Email"
-                />
-              </div>
-              <div class="mb-8">
-                <textarea
-                  cols="30"
-                  rows="6"
-                  class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
-                  placeholder="Enter Your Message"
-                ></textarea>
-              </div>
-              <div class="text-end lg:w-3/4 z-[1000]">
-                <button
-                  type="button"
-                  class="inline-block px-6 py-2 border-2 dark:border-indigo-300 border-indigo-800 dark:text-white text-black sm:text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                  v-wave="{
-                    color: 'rebeccapurple',
-                    initialOpacity: 0.5,
-                    duration: 0.5,
-                    easing: 'ease-in',
-                  }"
-                >
-                  Send
-                </button>
-              </div>
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                @submit.prevent="handelSubmit"
+              >
+                <p class="hidden">
+                  <label>Your Name: <input type="text" name="name" /></label>
+                </p>
+                <div class="mb-8">
+                  <input
+                    type="text"
+                    v-model="form.name"
+                    name="name"
+                    class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
+                    placeholder="Enter Your Name"
+                  />
+                </div>
+                <div class="mb-8">
+                  <input
+                    type="form.email"
+                    v-model="email"
+                    name="email"
+                    class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
+                    placeholder="Enter Your Email"
+                  />
+                </div>
+                <div class="mb-8">
+                  <textarea
+                    name="message"
+                    v-model="form.message"
+                    cols="30"
+                    rows="6"
+                    class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
+                    placeholder="Enter Your Message"
+                  ></textarea>
+                </div>
+                <div class="text-end lg:w-3/4 z-[1000]">
+                  <button
+                    type="submit"
+                    class="inline-block px-6 py-2 border-2 dark:border-indigo-300 border-indigo-800 dark:text-white text-black sm:text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    v-wave="{
+                      color: 'rebeccapurple',
+                      initialOpacity: 0.5,
+                      duration: 0.5,
+                      easing: 'ease-in',
+                    }"
+                  >
+                    Send
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -124,7 +140,40 @@ export default {
       contactStart: "< get in touch >",
       contactEnd: " < / get in touch >",
       Contact,
+      form: {
+        name: "",
+        email: "",
+        message: "",
+      },
     };
+  },
+  methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+    handelSubmit() {
+      console.log("Hello");
+      fetch("/", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/x-www-urlencoded",
+        },
+        body: this.encode({
+          "form-name": "contact",
+          ...this.form,
+        }),
+      })
+        .then((success) => {
+          console.log(success);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
