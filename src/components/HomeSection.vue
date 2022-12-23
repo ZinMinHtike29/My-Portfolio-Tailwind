@@ -46,14 +46,21 @@
                 width == 1024 ? '-ml-3' : '',
               ]"
             >
-              <a href="https://www.facebook.com/zin.m.htike.125">
+              <a
+                href="https://www.facebook.com/zin.m.htike.125"
+                target="_blank"
+              >
                 <i class="fa-brands fa-facebook-f"></i
               ></a>
-              <a href="https://github.com/ZinMinHtike29">
+              <a href="https://github.com/ZinMinHtike29" target="_blank">
                 <i class="fa-brands fa-github"></i
               ></a>
-              <a href=""><i class="fa-brands fa-telegram"></i></a>
-              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              <a href=""
+                ><i class="fa-brands fa-telegram" target="_blank"></i
+              ></a>
+              <a href=""
+                ><i class="fa-brands fa-linkedin" target="_blank"></i
+              ></a>
               <div
                 class="h-48 w-1 dark:bg-indigo-900 bg-indigo-600 hidden md:block"
               ></div>
