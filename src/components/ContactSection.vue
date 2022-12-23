@@ -44,15 +44,21 @@
                     class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
                     placeholder="Enter Your Name"
                   />
+                  <small class="text-red-400" v-if="validateForm.name"
+                    >Need To Fill Your Name ...
+                  </small>
                 </div>
                 <div class="mb-8">
                   <input
-                    type="form.email"
-                    v-model="email"
+                    type="email"
+                    v-model="form.email"
                     name="email"
                     class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
                     placeholder="Enter Your Email"
                   />
+                  <small class="text-red-400" v-if="validateForm.email"
+                    >Need To Fill Your Email ...
+                  </small>
                 </div>
                 <div class="mb-8">
                   <textarea
@@ -63,6 +69,9 @@
                     class="block w-full pb-3 text-indigo-700 focus:outline-none transition ease-in-out m-0 lg:w-3/4 border-b-2 border-indigo-600 bg-transparent dark:border-indigo-300 dark:placeholder-indigo-300 placeholder-indigo-700"
                     placeholder="Enter Your Message"
                   ></textarea>
+                  <small class="text-red-400" v-if="validateForm.message"
+                    >Need To Fill Your Message ...
+                  </small>
                 </div>
                 <div class="text-end lg:w-3/4 z-[1000]">
                   <button
@@ -145,6 +154,11 @@ export default {
         email: "",
         message: "",
       },
+      validateForm: {
+        name: false,
+        email: false,
+        message: false,
+      },
     };
   },
   methods: {
@@ -156,23 +170,37 @@ export default {
         .join("&");
     },
     handelSubmit() {
-      console.log("Hello");
-      fetch("/", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: this.encode({
-          "form-name": "contact",
-          ...this.form,
-        }),
-      })
-        .then((success) => {
-          console.log(success);
-        })
-        .catch((err) => {
-          console.log(err);
+      this.validationData();
+      if (
+        !this.validateForm.name &&
+        this.validateForm.email &&
+        this.validateForm.message
+      ) {
+        fetch("/", {
+          method: "Post",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: this.encode({
+            "form-name": "contact",
+            ...this.form,
+          }),
+        }).then((success) => {
+          if (success.ok) {
+            this.clearForm();
+          }
         });
+      }
+    },
+    clearForm() {
+      this.form.name = "";
+      this.form.email = "";
+      this.form.message = "";
+    },
+    validationData() {
+      this.validateForm.name = this.form.name == "" ? true : false;
+      this.validateForm.email = this.form.email == "" ? true : false;
+      this.validateForm.message = this.form.message == "" ? true : false;
     },
   },
 };
