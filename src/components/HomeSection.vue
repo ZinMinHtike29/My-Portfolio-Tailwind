@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container md:min-h-[768px] lg:min-h-screen flex items-center m-auto mt-3 my-3 md:my-0"
+    class="container md:min-h-[768px] lg:min-h-screen flex items-center m-auto mt-8 md:mt-3 my-3 md:my-0"
     id="home"
   >
     <div class="px-8">
@@ -46,11 +46,10 @@
                 width == 1024 ? '-ml-3' : '',
               ]"
             >
-              <i class="fa-brands fa-facebook-f"></i>
-              <i class="fa-brands fa-github"></i>
-              <i class="fa-brands fa-telegram"></i>
-              <i class="fa-brands fa-linkedin"></i>
-
+             <a href='https://www.facebook.com/zin.m.htike.125'> <i class="fa-brands fa-facebook-f"></i></a>
+             <a href='https://github.com/ZinMinHtike29'> <i class="fa-brands fa-github"></i></a>
+              <a href=''><i class="fa-brands fa-telegram"></i></a>
+              <a href=''><i class="fa-brands fa-linkedin"></i></a>
               <div
                 class="h-48 w-1 dark:bg-indigo-900 bg-indigo-600 hidden md:block"
               ></div>
