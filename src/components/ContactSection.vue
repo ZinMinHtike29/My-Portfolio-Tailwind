@@ -173,8 +173,8 @@ export default {
       this.validationData();
       if (
         !this.validateForm.name &&
-        this.validateForm.email &&
-        this.validateForm.message
+        !this.validateForm.email &&
+        !this.validateForm.message
       ) {
         fetch("/", {
           method: "Post",
