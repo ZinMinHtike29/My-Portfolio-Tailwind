@@ -15,7 +15,7 @@
           v-motion-pop-visible
           class="text-sm md:text-lg dark:text-slate-200 lg:text-xl text-gray-700 tracking-widest leading-relaxed"
         >
-          I am trying to become a Junior Developer .
+         OJT At Code-Lab 2023-Jan - Feb
         </p>
       </div>
       <div
