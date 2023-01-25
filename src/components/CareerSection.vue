@@ -15,7 +15,7 @@
           v-motion-pop-visible
           class="text-sm md:text-lg dark:text-slate-200 lg:text-xl text-gray-700 tracking-widest leading-relaxed"
         >
-         OJT At Code-Lab 2023-Jan - Feb
+         OJT At Code-Lab    2023-Jan - Feb
         </p>
       </div>
       <div
